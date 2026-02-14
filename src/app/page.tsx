@@ -2,7 +2,6 @@
 
 import { useState, useMemo } from 'react';
 import { pigeons, conservationColors, Pigeon } from '@/data/pigeons';
-import Image from 'next/image';
 
 const regions = ['All', ...Array.from(new Set(pigeons.map(p => p.region)))];
 const conservationStatuses = ['All', 'Least Concern', 'Near Threatened', 'Vulnerable', 'Endangered', 'Critically Endangered', 'Extinct'];
@@ -96,13 +95,11 @@ export default function Home() {
               className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-purple-500/50 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-purple-500/20 cursor-pointer"
             >
               <div className="aspect-square relative overflow-hidden">
-                <Image
+                <img
                   src={pigeon.image}
                   alt={pigeon.name}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  unoptimized
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <span className={`absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-medium ${conservationColors[pigeon.conservation]}`}>
@@ -148,12 +145,10 @@ export default function Home() {
               ✕
             </button>
             <div className="aspect-video relative">
-              <Image
+              <img
                 src={selectedPigeon.image}
                 alt={selectedPigeon.name}
-                fill
-                className="object-cover"
-                unoptimized
+                className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
             </div>
